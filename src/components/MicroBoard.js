@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import styles from './Board.module.css'
 import WhiteTile from './WhiteTile'
 import BlackTile from './BlackTile'
 
@@ -16,7 +15,7 @@ const MicroBoard = () => {
   }
 
   return (
-    <div className={styles.board}>
+    <div className={`board ${movingPiece ? 'movingPiece' : ''}`}>
       <div>
         <WhiteTile
           id="a2"

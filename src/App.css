@@ -16,6 +16,13 @@ button {
   cursor: pointer;
 }
 
+.board {
+  height: 40em;
+  width: 40em;
+  margin: 40px auto;
+  display: flex;
+}
+
 .chessPiece {
   font-size: 50px;
   height: 100%;
@@ -38,4 +45,17 @@ button {
   width: 20em;
   border: 1px solid grey;
   margin: 0;
+}
+
+.board.movingPiece .taken {
+  background-color: green;
+}
+
+.board.movingPiece .available {
+  background-color: green;
+  border-radius: 50%;
+  height: 5em;
+  width: 5em;
+  display: inline-block;
+  margin-top: 35%;
 }
