@@ -4,20 +4,3 @@
   margin: 40px auto;
   display: flex;
 }
-
-.whiteTile {
-  background-color: rgb(219, 163, 80);
-  height: 5em;
-  width: 5em;
-  border: 3px grey;
-  border: 1px solid grey;
-  margin: 0;
-}
-
-.blackTile {
-  background-color: rgb(77, 48, 5);
-  height: 5em;
-  width: 5em;
-  border: 1px solid grey;
-  margin: 0;
-}

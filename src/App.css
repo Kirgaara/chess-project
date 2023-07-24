@@ -15,3 +15,27 @@ button {
   margin: 20px;
   cursor: pointer;
 }
+
+.chessPiece {
+  font-size: 50px;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+}
+
+.whiteTile {
+  background-color: rgb(219, 163, 80);
+  height: 20em;
+  width: 20em;
+  border: 3px grey;
+  border: 1px solid grey;
+  margin: 0;
+}
+
+.blackTile {
+  background-color: rgb(77, 48, 5);
+  height: 20em;
+  width: 20em;
+  border: 1px solid grey;
+  margin: 0;
+}

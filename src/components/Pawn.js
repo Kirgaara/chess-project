@@ -1,7 +1,11 @@
 import React from 'react'
 
-const Pawn = () => {
-  return <div>Pawn</div>
+const Pawn = ({ onClick }) => {
+  return (
+    <div className="chessPiece" onClick={onClick}>
+      Pawn
+    </div>
+  )
 }
 
 export default Pawn
