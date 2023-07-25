@@ -30,21 +30,21 @@ button {
   justify-content: center;
 }
 
-.whiteTile {
-  background-color: rgb(219, 163, 80);
-  height: 20em;
-  width: 20em;
+.whiteTile,
+.blackTile {
+  height: 10em;
+  width: 10em;
   border: 3px grey;
   border: 1px solid grey;
   margin: 0;
 }
 
+.whiteTile {
+  background-color: rgb(219, 163, 80);
+}
+
 .blackTile {
   background-color: rgb(77, 48, 5);
-  height: 20em;
-  width: 20em;
-  border: 1px solid grey;
-  margin: 0;
 }
 
 .board.movingPiece .taken {
@@ -54,8 +54,8 @@ button {
 .board.movingPiece .available {
   background-color: green;
   border-radius: 50%;
-  height: 5em;
-  width: 5em;
+  height: 2.5em;
+  width: 2.5em;
   display: inline-block;
   margin-top: 35%;
 }

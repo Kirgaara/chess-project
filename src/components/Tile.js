@@ -7,9 +7,15 @@ const Tile = ({ figure, id, movePiece }) => {
   } else {
     taken = false
   }
+  let sum = 0
+  for (let i = 0; i < id.length; i++) {
+    sum += Number(id[i])
+  }
   return (
     <div
-      className={`blackTile ${taken ? 'taken' : ''}`}
+      className={`${sum % 2 === 0 ? 'blackTile' : 'whiteTile'} ${
+        taken ? 'taken' : ''
+      }`}
       onClick={() => movePiece(id)}
     >
       <div className={taken ? '' : 'available'}></div>

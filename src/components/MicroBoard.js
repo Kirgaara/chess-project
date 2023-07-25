@@ -1,9 +1,8 @@
 import { useState } from 'react'
-import WhiteTile from './WhiteTile'
-import BlackTile from './BlackTile'
+import Row from './Row'
 
 const MicroBoard = () => {
-  const [pawnLocation, setPawnLocation] = useState('a1')
+  const [pawnLocation, setPawnLocation] = useState('11')
   const [movingPiece, setMovingPiece] = useState(false)
   const movePawn = (id) => {
     if (movingPiece) {
@@ -16,30 +15,10 @@ const MicroBoard = () => {
 
   return (
     <div className={`board ${movingPiece ? 'movingPiece' : ''}`}>
-      <div>
-        <WhiteTile
-          id="a2"
-          figure={pawnLocation}
-          movePiece={movePawn}
-        ></WhiteTile>
-        <BlackTile
-          id="a1"
-          figure={pawnLocation}
-          movePiece={movePawn}
-        ></BlackTile>
-      </div>
-      <div>
-        <BlackTile
-          id="b2"
-          figure={pawnLocation}
-          movePiece={movePawn}
-        ></BlackTile>
-        <WhiteTile
-          id="b1"
-          figure={pawnLocation}
-          movePiece={movePawn}
-        ></WhiteTile>
-      </div>
+      <Row rowNumber={1} pawnLocation={pawnLocation} movePawn={movePawn} />
+      <Row rowNumber={2} pawnLocation={pawnLocation} movePawn={movePawn} />
+      <Row rowNumber={3} pawnLocation={pawnLocation} movePawn={movePawn} />
+      <Row rowNumber={4} pawnLocation={pawnLocation} movePawn={movePawn} />
     </div>
   )
 }
