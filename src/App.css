@@ -24,16 +24,17 @@ button {
 }
 
 .chessPiece {
-  font-size: 50px;
-  height: 100%;
-  width: 100%;
-  justify-content: center;
+  height: 90%;
+  width: 70%;
+  align-items: baseline;
+  margin-top: 5%;
+  font-size: 40px;
 }
 
 .whiteTile,
 .blackTile {
-  height: 10em;
-  width: 10em;
+  height: 5em;
+  width: 5em;
   border: 3px grey;
   border: 1px solid grey;
   margin: 0;
@@ -54,8 +55,8 @@ button {
 .board.movingPiece .available {
   background-color: green;
   border-radius: 50%;
-  height: 2.5em;
-  width: 2.5em;
+  height: 1.25em;
+  width: 1.25em;
   display: inline-block;
   margin-top: 35%;
 }
