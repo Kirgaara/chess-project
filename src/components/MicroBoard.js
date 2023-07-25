@@ -2,14 +2,16 @@ import { useState } from 'react'
 import Row from './Row'
 
 const MicroBoard = () => {
-  const [pawnLocation, setPawnLocation] = useState('11')
+  const [pawnLocation, setPawnLocation] = useState(['11', '21', '31', '41'])
+  const [nonChosenPieces, setNonChosenPieces] = useState([])
   const [movingPiece, setMovingPiece] = useState(false)
   const movePawn = (id) => {
     if (movingPiece) {
-      setPawnLocation(id)
+      setPawnLocation([...nonChosenPieces, id])
       setMovingPiece(false)
-    } else if (id === pawnLocation) {
+    } else if (pawnLocation.filter((value) => value === id).length) {
       setMovingPiece('true')
+      setNonChosenPieces(pawnLocation.filter((value) => value !== id))
     }
   }
 

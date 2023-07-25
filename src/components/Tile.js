@@ -2,7 +2,7 @@ import Pawn from './Pawn'
 
 const Tile = ({ figure, id, movePiece }) => {
   let taken
-  if (figure === id) {
+  if (figure.filter((value) => value === id).length) {
     taken = true
   } else {
     taken = false
@@ -19,7 +19,7 @@ const Tile = ({ figure, id, movePiece }) => {
       onClick={() => movePiece(id)}
     >
       <div className={taken ? '' : 'available'}></div>
-      {figure === id ? <Pawn /> : null}
+      {figure.filter((value) => value === id).length ? <Pawn /> : null}
     </div>
   )
 }
