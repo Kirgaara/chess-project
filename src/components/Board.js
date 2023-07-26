@@ -1,21 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Row from './Row'
-
-function possibleMovesHandler(id, figure) {
-  switch (figure) {
-    default:
-      return []
-    case 'pawn':
-      if (
-        ['12', '22', '32', '42', '52', '62', '72', '82'].filter(
-          (value) => value === id
-        ).length
-      ) {
-        return [`${Number(id) + 1}`, `${Number(id) + 2}`]
-      }
-      return [`${Number(id) + 1}`]
-  }
-}
+import possibleMovesHandler from './possibleMovesHandler'
 
 const Board = () => {
   const [piecesLocation, setPiecesLocation] = useState({
@@ -33,6 +18,15 @@ const Board = () => {
     nonChosenPieces: [],
     isMoving: false,
   })
+  const [takenTiles, setTakenTiles] = useState([])
+  useEffect(() => {
+    let array = []
+    for (let key in piecesLocation) {
+      array = array.concat(piecesLocation[key])
+    }
+    setTakenTiles(array)
+  }, [piecesLocation])
+
   const movePiece = (id, figure) => {
     if (
       piecesLocation[figure]?.filter((value) => value === id).length &&
@@ -41,26 +35,24 @@ const Board = () => {
       setMovingPiece({
         figure: figure,
         location: id,
-        possibleMoves: possibleMovesHandler(id, figure),
+        possibleMoves: possibleMovesHandler(id, figure, takenTiles),
         nonChosenPieces: piecesLocation[figure].filter((value) => value !== id),
         isMoving: 'true',
       })
     }
     if (movingPiece.isMoving) {
-      if (movingPiece.figure === 'pawn') {
-        if (movingPiece.possibleMoves.filter((value) => value === id).length) {
-          setPiecesLocation({
-            ...piecesLocation,
-            [movingPiece.figure]: [...movingPiece.nonChosenPieces, id],
-          })
-          setMovingPiece({
-            figure: '',
-            location: '',
-            possibleMoves: [],
-            nonChosenPieces: [],
-            isMoving: false,
-          })
-        }
+      if (movingPiece.possibleMoves.filter((value) => value === id).length) {
+        setPiecesLocation({
+          ...piecesLocation,
+          [movingPiece.figure]: [...movingPiece.nonChosenPieces, id],
+        })
+        setMovingPiece({
+          figure: '',
+          location: '',
+          possibleMoves: [],
+          nonChosenPieces: [],
+          isMoving: false,
+        })
       }
     }
   }
