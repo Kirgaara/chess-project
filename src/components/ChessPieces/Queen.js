@@ -1,7 +1,7 @@
-import React from 'react'
+import img from '../../model/whiteQueen.png'
 
 const Queen = () => {
-  return <div className="chessPiece">Q</div>
+  return <img src={img} className="chessPiece" alt=""></img>
 }
 
 export default Queen

@@ -25,10 +25,9 @@ button {
 
 .chessPiece {
   height: 90%;
-  width: 70%;
+  width: 90%;
   align-items: baseline;
   margin-top: 5%;
-  font-size: 40px;
 }
 
 .whiteTile,

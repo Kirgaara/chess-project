@@ -1,7 +1,7 @@
-import React from 'react'
+import img from '../../model/whiteRook.png'
 
 const Rook = () => {
-  return <div className="chessPiece">R</div>
+  return <img src={img} className="chessPiece" alt=""></img>
 }
 
 export default Rook
