@@ -25,7 +25,7 @@ function placeFigure(figure) {
   }
 }
 
-const Tile = ({ figureLocations, id, movePiece }) => {
+const Tile = ({ figureLocations, id, movePiece, possibleMoves }) => {
   const [figure, setFigure] = useState('')
   let taken
   useEffect(() => {
@@ -75,7 +75,13 @@ const Tile = ({ figureLocations, id, movePiece }) => {
       onClick={() => movePiece(id, figure)}
       id={id}
     >
-      <div className={taken ? '' : 'available'}></div>
+      <div
+        className={
+          possibleMoves.filter((value) => value === id).length
+            ? 'available'
+            : ''
+        }
+      ></div>
       {figureLocations[figure]?.filter((value) => value === id).length
         ? placeFigure(figure)
         : null}
