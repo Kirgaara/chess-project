@@ -2,18 +2,29 @@ function checkTileTaken(array, id) {
   return !!array.filter((value) => value === id).length
 }
 
-const possibleMovesHandler = (id, figure, takenTiles) => {
+const possibleMovesHandler = (id, figure, color, takenTiles) => {
   switch (figure) {
     default:
       return []
     case 'pawn':
-      if (!checkTileTaken(takenTiles, `${Number(id) + 1}`)) {
-        if (
-          checkTileTaken(['12', '22', '32', '42', '52', '62', '72', '82'], id)
-        ) {
-          return [`${Number(id) + 1}`, `${Number(id) + 2}`]
+      if (color === 'white') {
+        if (!checkTileTaken(takenTiles, `${Number(id) + 1}`)) {
+          if (
+            checkTileTaken(['12', '22', '32', '42', '52', '62', '72', '82'], id)
+          ) {
+            return [`${Number(id) + 1}`, `${Number(id) + 2}`]
+          }
+          return [`${Number(id) + 1}`]
         }
-        return [`${Number(id) + 1}`]
+      } else {
+        if (!checkTileTaken(takenTiles, `${Number(id) - 1}`)) {
+          if (
+            checkTileTaken(['17', '27', '37', '47', '57', '67', '77', '87'], id)
+          ) {
+            return [`${Number(id) - 1}`, `${Number(id) - 2}`]
+          }
+          return [`${Number(id) - 1}`]
+        }
       }
       return []
     case 'bishop':

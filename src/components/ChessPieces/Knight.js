@@ -1,7 +1,14 @@
-import img from '../../model/whiteKnight.png'
+import imgWhite from '../../model/whiteKnight.png'
+import imgBlack from '../../model/blackKnight.png'
 
-const Knight = () => {
-  return <img src={img} className="chessPiece" alt=""></img>
+const Knight = ({ color }) => {
+  return (
+    <img
+      src={color === 'white' ? imgWhite : imgBlack}
+      className="chessPiece"
+      alt=""
+    ></img>
+  )
 }
 
 export default Knight

@@ -6,49 +6,81 @@ import King from './ChessPieces/King'
 import Queen from './ChessPieces/Queen'
 import { useState, useEffect } from 'react'
 
-function placeFigure(figure) {
+function placeFigure(figure, color) {
   switch (figure) {
     case 'pawn':
-      return <Pawn />
+      return <Pawn color={color} />
     case 'bishop':
-      return <Bishop />
+      return <Bishop color={color} />
     case 'knight':
-      return <Knight />
+      return <Knight color={color} />
     case 'rook':
-      return <Rook />
+      return <Rook color={color} />
     case 'king':
-      return <King />
+      return <King color={color} />
     case 'queen':
-      return <Queen />
+      return <Queen color={color} />
     default:
       return
   }
 }
 
-const Tile = ({ figureLocations, id, movePiece, possibleMoves }) => {
-  const [figure, setFigure] = useState('')
-  let taken
+const Tile = ({
+  figureLocations,
+  id,
+  movePiece,
+  possibleMoves,
+  takenTiles,
+}) => {
+  const [figure, setFigure] = useState({
+    figure: '',
+    color: '',
+  })
   useEffect(() => {
     for (let key in figureLocations) {
-      if (figureLocations[key].filter((value) => value === id).length) {
+      if (figureLocations[key].white.filter((value) => value === id).length) {
         switch (key) {
           case 'pawn':
-            setFigure('pawn')
+            setFigure({ figure: 'pawn', color: 'white' })
             break
           case 'bishop':
-            setFigure('bishop')
+            setFigure({ figure: 'bishop', color: 'white' })
             break
           case 'knight':
-            setFigure('knight')
+            setFigure({ figure: 'knight', color: 'white' })
             break
           case 'rook':
-            setFigure('rook')
+            setFigure({ figure: 'rook', color: 'white' })
             break
           case 'king':
-            setFigure('king')
+            setFigure({ figure: 'king', color: 'white' })
             break
           case 'queen':
-            setFigure('queen')
+            setFigure({ figure: 'queen', color: 'white' })
+            break
+          default:
+            break
+        }
+      }
+      if (figureLocations[key].black.filter((value) => value === id).length) {
+        switch (key) {
+          case 'pawn':
+            setFigure({ figure: 'pawn', color: 'black' })
+            break
+          case 'bishop':
+            setFigure({ figure: 'bishop', color: 'black' })
+            break
+          case 'knight':
+            setFigure({ figure: 'knight', color: 'black' })
+            break
+          case 'rook':
+            setFigure({ figure: 'rook', color: 'black' })
+            break
+          case 'king':
+            setFigure({ figure: 'king', color: 'black' })
+            break
+          case 'queen':
+            setFigure({ figure: 'queen', color: 'black' })
             break
           default:
             break
@@ -57,22 +89,20 @@ const Tile = ({ figureLocations, id, movePiece, possibleMoves }) => {
     }
   }, [figureLocations, id])
 
-  if (figureLocations[figure]?.filter((value) => value === id).length) {
-    taken = true
-  } else {
-    taken = false
-  }
-
   let sum = 0
   for (let i = 0; i < id.length; i++) {
     sum += Number(id[i])
+  }
+  let taken = false
+  if (takenTiles.filter((value) => value === id).length) {
+    taken = true
   }
   return (
     <div
       className={`${sum % 2 === 0 ? 'blackTile' : 'whiteTile'} ${
         taken ? 'taken' : ''
       }`}
-      onClick={() => movePiece(id, figure)}
+      onClick={() => movePiece(id, figure.figure)}
       id={id}
     >
       <div
@@ -82,9 +112,7 @@ const Tile = ({ figureLocations, id, movePiece, possibleMoves }) => {
             : ''
         }
       ></div>
-      {figureLocations[figure]?.filter((value) => value === id).length
-        ? placeFigure(figure)
-        : null}
+      {taken ? placeFigure(figure.figure, figure.color) : null}
     </div>
   )
 }

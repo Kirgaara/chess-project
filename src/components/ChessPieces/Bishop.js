@@ -1,7 +1,14 @@
-import img from '../../model/whiteBishop.png'
+import imgWhite from '../../model/whiteBishop.png'
+import imgBlack from '../../model/blackBishop.png'
 
-const Bishop = () => {
-  return <img src={img} className="chessPiece" alt=""></img>
+const Bishop = ({ color }) => {
+  return (
+    <img
+      src={color === 'white' ? imgWhite : imgBlack}
+      className="chessPiece"
+      alt=""
+    ></img>
+  )
 }
 
 export default Bishop
