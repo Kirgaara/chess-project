@@ -8,64 +8,19 @@ const Row = ({
   possibleMoves,
   takenTiles,
 }) => {
+  const tileID = [8, 7, 6, 5, 4, 3, 2, 1]
   return (
     <div>
-      <Tile
-        id={rowNumber + '8'}
-        figureLocations={pawnLocation}
-        movePiece={movePiece}
-        possibleMoves={possibleMoves}
-        takenTiles={takenTiles}
-      ></Tile>
-      <Tile
-        id={rowNumber + '7'}
-        figureLocations={pawnLocation}
-        movePiece={movePiece}
-        possibleMoves={possibleMoves}
-        takenTiles={takenTiles}
-      ></Tile>
-      <Tile
-        id={rowNumber + '6'}
-        figureLocations={pawnLocation}
-        movePiece={movePiece}
-        possibleMoves={possibleMoves}
-        takenTiles={takenTiles}
-      ></Tile>
-      <Tile
-        id={rowNumber + '5'}
-        figureLocations={pawnLocation}
-        movePiece={movePiece}
-        possibleMoves={possibleMoves}
-        takenTiles={takenTiles}
-      ></Tile>
-      <Tile
-        id={rowNumber + '4'}
-        figureLocations={pawnLocation}
-        movePiece={movePiece}
-        possibleMoves={possibleMoves}
-        takenTiles={takenTiles}
-      ></Tile>
-      <Tile
-        id={rowNumber + '3'}
-        figureLocations={pawnLocation}
-        movePiece={movePiece}
-        possibleMoves={possibleMoves}
-        takenTiles={takenTiles}
-      ></Tile>
-      <Tile
-        id={rowNumber + '2'}
-        figureLocations={pawnLocation}
-        movePiece={movePiece}
-        possibleMoves={possibleMoves}
-        takenTiles={takenTiles}
-      ></Tile>
-      <Tile
-        id={rowNumber + '1'}
-        figureLocations={pawnLocation}
-        movePiece={movePiece}
-        possibleMoves={possibleMoves}
-        takenTiles={takenTiles}
-      ></Tile>
+      {tileID.map((el) => (
+        <Tile
+          key={el}
+          id={rowNumber + '' + el}
+          figureLocations={pawnLocation}
+          movePiece={movePiece}
+          possibleMoves={possibleMoves}
+          takenTiles={takenTiles}
+        ></Tile>
+      ))}
     </div>
   )
 }

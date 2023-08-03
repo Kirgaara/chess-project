@@ -48,7 +48,7 @@ button {
 }
 
 .board.movingPiece .taken {
-  background-color: green;
+  background-color: rgb(212, 20, 20);
 }
 
 .board.movingPiece .available {

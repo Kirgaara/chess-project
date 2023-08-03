@@ -100,14 +100,16 @@ const Tile = ({
   return (
     <div
       className={`${sum % 2 === 0 ? 'blackTile' : 'whiteTile'} ${
-        taken ? 'taken' : ''
+        taken && possibleMoves.filter((value) => value === id).length
+          ? 'taken'
+          : ''
       }`}
       onClick={() => movePiece(id, figure.figure)}
       id={id}
     >
       <div
         className={
-          possibleMoves.filter((value) => value === id).length
+          possibleMoves.filter((value) => value === id).length && !taken
             ? 'available'
             : ''
         }
