@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import Row from './Row'
 import possibleMovesHandler from '../utils/possibleMovesHandler'
+import GameOver from './GameOver'
 
 const Board = () => {
   const [piecesLocation, setPiecesLocation] = useState({
@@ -27,6 +28,7 @@ const Board = () => {
     black: [],
     all: [],
   })
+  const [currentTurn, setCurrentTurn] = useState('white')
   useEffect(() => {
     let arrayAll = []
     let arrayBlack = []
@@ -42,7 +44,8 @@ const Board = () => {
   const movePiece = (id, figure) => {
     if (
       piecesLocation[figure]?.white.filter((value) => value === id).length &&
-      !movingPiece.isMoving
+      !movingPiece.isMoving &&
+      currentTurn === 'white'
     ) {
       setMovingPiece({
         figure: figure,
@@ -64,7 +67,8 @@ const Board = () => {
     }
     if (
       piecesLocation[figure]?.black.filter((value) => value === id).length &&
-      !movingPiece.isMoving
+      !movingPiece.isMoving &&
+      currentTurn === 'black'
     ) {
       setMovingPiece({
         figure: figure,
@@ -128,6 +132,11 @@ const Board = () => {
           }
         }
         setPiecesLocation(newPiecesLocation)
+        if (currentTurn === 'white') {
+          setCurrentTurn('black')
+        } else {
+          setCurrentTurn('white')
+        }
         setMovingPiece({
           figure: '',
           color: '',
@@ -148,40 +157,42 @@ const Board = () => {
       }
     }
   }
-  // const eatPiece = (id) => {
-  //   let newPiecesLocation = {}
-  //   if (takenTiles.white.filter((value) => value === id).length) {
-  //     for (let key in piecesLocation) {
-  //       newPiecesLocation = {
-  //         ...newPiecesLocation,
-  //         [key]: {
-  //           ...piecesLocation[key],
-  //           white: piecesLocation[key].white.filter((value) => value !== id),
-  //         },
-  //       }
-  //     }
-  //   } else {
-  //     for (let key in piecesLocation) {
-  //       newPiecesLocation = {
-  //         ...newPiecesLocation,
-  //         [key]: {
-  //           ...piecesLocation[key],
-  //           black: piecesLocation[key].black.filter((value) => value !== id),
-  //         },
-  //       }
-  //     }
-  //   }
-  //   setPiecesLocation(newPiecesLocation)
-  // }
+
+  let gameEnded = false
+  let winner = ''
+  if (!piecesLocation.king.white.length) {
+    gameEnded = true
+    winner = 'Black'
+  }
+  if (!piecesLocation.king.black.length) {
+    gameEnded = true
+    winner = 'White'
+  }
+
+  const gameRestart = () => {
+    gameEnded = false
+    setPiecesLocation({
+      pawn: {
+        white: ['12', '22', '32', '42', '52', '62', '72', '82'],
+        black: ['17', '27', '37', '47', '57', '67', '77', '87'],
+      },
+      bishop: { white: ['31', '61'], black: ['38', '68'] },
+      knight: { white: ['21', '71'], black: ['28', '78'] },
+      rook: { white: ['11', '81'], black: ['18', '88'] },
+      king: { white: ['51'], black: ['58'] },
+      queen: { white: ['41'], black: ['48'] },
+    })
+  }
 
   const numberOfRows = [1, 2, 3, 4, 5, 6, 7, 8]
   return (
     <div className={`board ${movingPiece.isMoving ? 'movingPiece' : ''}`}>
+      {gameEnded ? <GameOver winner={winner} restart={gameRestart} /> : null}
       {numberOfRows.map((el) => (
         <Row
           key={el}
           rowNumber={el}
-          pawnLocation={piecesLocation}
+          piecesLocation={piecesLocation}
           movePiece={movePiece}
           possibleMoves={movingPiece.possibleMoves}
           takenTiles={takenTiles.all}

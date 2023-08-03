@@ -3,19 +3,19 @@ import Tile from './Tile'
 
 const Row = ({
   rowNumber,
-  pawnLocation,
+  piecesLocation,
   movePiece,
   possibleMoves,
   takenTiles,
 }) => {
   const tileID = [8, 7, 6, 5, 4, 3, 2, 1]
   return (
-    <div>
+    <div className="row">
       {tileID.map((el) => (
         <Tile
           key={el}
           id={rowNumber + '' + el}
-          figureLocations={pawnLocation}
+          figureLocations={piecesLocation}
           movePiece={movePiece}
           possibleMoves={possibleMoves}
           takenTiles={takenTiles}
