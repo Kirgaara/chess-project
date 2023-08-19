@@ -1,7 +1,8 @@
+import React from 'react'
 import imgWhite from '../../model/whiteQueen.png'
 import imgBlack from '../../model/blackQueen.png'
 
-const Queen = ({ color }) => {
+const Queen = ({ color }: { color: string }) => {
   return (
     <img
       src={color === 'white' ? imgWhite : imgBlack}

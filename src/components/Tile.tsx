@@ -1,12 +1,13 @@
+import React, { useState, useEffect } from 'react'
 import Pawn from './ChessPieces/Pawn'
 import Bishop from './ChessPieces/Bishop'
 import Knight from './ChessPieces/Knight'
 import Rook from './ChessPieces/Rook'
 import King from './ChessPieces/King'
 import Queen from './ChessPieces/Queen'
-import { useState, useEffect } from 'react'
+import { AllPieces, TileParams } from '../utils/interfaces'
 
-function placeFigure(figure, color) {
+function placeFigure(figure: string, color: string) {
   switch (figure) {
     case 'pawn':
       return <Pawn color={color} />
@@ -31,14 +32,18 @@ const Tile = ({
   movePiece,
   possibleMoves,
   takenTiles,
-}) => {
+}: TileParams) => {
   const [figure, setFigure] = useState({
     figure: '',
     color: '',
   })
   useEffect(() => {
     for (let key in figureLocations) {
-      if (figureLocations[key].white.filter((value) => value === id).length) {
+      if (
+        figureLocations[key as keyof AllPieces].white.filter(
+          (value) => value === id
+        ).length
+      ) {
         switch (key) {
           case 'pawn':
             setFigure({ figure: 'pawn', color: 'white' })
@@ -62,7 +67,11 @@ const Tile = ({
             break
         }
       }
-      if (figureLocations[key].black.filter((value) => value === id).length) {
+      if (
+        figureLocations[key as keyof AllPieces].black.filter(
+          (value) => value === id
+        ).length
+      ) {
         switch (key) {
           case 'pawn':
             setFigure({ figure: 'pawn', color: 'black' })
@@ -89,11 +98,11 @@ const Tile = ({
     }
   }, [figureLocations, id])
 
-  let sum = 0
+  let sum: number = 0
   for (let i = 0; i < id.length; i++) {
     sum += Number(id[i])
   }
-  let taken = false
+  let taken: boolean = false
   if (takenTiles.filter((value) => value === id).length) {
     taken = true
   }

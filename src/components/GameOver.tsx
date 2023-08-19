@@ -1,6 +1,12 @@
+import React from 'react'
 import { RiLoopRightLine } from 'react-icons/ri'
 
-const GameOver = ({ winner, restart }) => {
+type ParamsType = {
+  winner: string
+  restart: () => void
+}
+
+const GameOver = ({ winner, restart }: ParamsType) => {
   return (
     <div className="end-screen">
       <h2>Game Over</h2>

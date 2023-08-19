@@ -1,20 +1,20 @@
-function checkTileTaken(array, id) {
+function checkTileTaken(array: string[], id: string) {
   return !!array.filter((value) => value === id).length
 }
 
 const possibleMovesHandler = (
-  id,
-  figure,
-  color,
-  takenTiles,
-  takenTilesWhite,
-  takenTilesBlack
+  id: string,
+  figure: string,
+  color: string,
+  takenTiles: string[],
+  takenTilesWhite: string[],
+  takenTilesBlack: string[]
 ) => {
   switch (figure) {
     default:
       return []
     case 'pawn':
-      let pawnArray = []
+      let pawnArray: string[] = []
       if (color === 'white') {
         if (!checkTileTaken(takenTiles, `${Number(id) + 1}`)) {
           pawnArray.push(`${Number(id) + 1}`)
@@ -76,11 +76,11 @@ const possibleMovesHandler = (
       }
       return pawnArray
     case 'bishop':
-      let array = []
-      let bishopTopLeft = true
-      let bishopTopRight = true
-      let bishopBotLeft = true
-      let bishopBotRight = true
+      let array: string[] = []
+      let bishopTopLeft: boolean = true
+      let bishopTopRight: boolean = true
+      let bishopBotLeft: boolean = true
+      let bishopBotRight: boolean = true
       for (let i = 1; i < 8; i++) {
         if (
           !checkTileTaken(
@@ -234,16 +234,16 @@ const possibleMovesHandler = (
       array = array
         .filter(
           (value) =>
-            value < 89 &&
-            value > 10 &&
-            value % 10 !== 0 &&
-            value[0] !== 0 &&
-            value % 10 !== 9
+            Number(value) < 89 &&
+            Number(value) > 10 &&
+            Number(value) % 10 !== 0 &&
+            Number(value[0]) !== 0 &&
+            Number(value) % 10 !== 9
         )
         .sort()
       return array
     case 'knight':
-      let knightArray = []
+      let knightArray: string[] = []
       if (color === 'white') {
         if (
           !checkTileTaken(
@@ -378,20 +378,20 @@ const possibleMovesHandler = (
       knightArray = knightArray
         .filter(
           (value) =>
-            value < 89 &&
-            value > 10 &&
-            value % 10 !== 0 &&
-            value[0] !== 0 &&
-            value % 10 !== 9
+            Number(value) < 89 &&
+            Number(value) > 10 &&
+            Number(value) % 10 !== 0 &&
+            Number(value[0]) !== 0 &&
+            Number(value) % 10 !== 9
         )
         .sort()
       return knightArray
     case 'rook':
-      let rookArray = []
-      let rookTop = true
-      let rookBottom = true
-      let rookLeft = true
-      let rookRight = true
+      let rookArray: string[] = []
+      let rookTop: boolean = true
+      let rookBottom: boolean = true
+      let rookLeft: boolean = true
+      let rookRight: boolean = true
       for (let i = 1; i < 8; i++) {
         if (
           !checkTileTaken(takenTiles, `${Number(id[0]) + i + ''}${id[1]}`) &&
@@ -513,16 +513,16 @@ const possibleMovesHandler = (
       rookArray = rookArray
         .filter(
           (value) =>
-            value < 89 &&
-            value > 10 &&
-            value % 10 !== 0 &&
-            value[0] !== 0 &&
-            value % 10 !== 9
+            Number(value) < 89 &&
+            Number(value) > 10 &&
+            Number(value) % 10 !== 0 &&
+            Number(value[0]) !== 0 &&
+            Number(value) % 10 !== 9
         )
         .sort()
       return rookArray
     case 'king':
-      let kingArray = []
+      let kingArray: string[] = []
       if (color === 'white') {
         if (
           !checkTileTaken(
@@ -657,24 +657,24 @@ const possibleMovesHandler = (
       kingArray = kingArray
         .filter(
           (value) =>
-            value < 89 &&
-            value > 10 &&
-            value % 10 !== 0 &&
-            value[0] !== 0 &&
-            value % 10 !== 9
+            Number(value) < 89 &&
+            Number(value) > 10 &&
+            Number(value) % 10 !== 0 &&
+            Number(value[0]) !== 0 &&
+            Number(value) % 10 !== 9
         )
         .sort()
       return kingArray
     case 'queen':
-      let queenArray = []
-      let queenTopLeft = true
-      let queenTopRight = true
-      let queenBotLeft = true
-      let queenBotRight = true
-      let queenTop = true
-      let queenBottom = true
-      let queenLeft = true
-      let queenRight = true
+      let queenArray: string[] = []
+      let queenTopLeft: boolean = true
+      let queenTopRight: boolean = true
+      let queenBotLeft: boolean = true
+      let queenBotRight: boolean = true
+      let queenTop: boolean = true
+      let queenBottom: boolean = true
+      let queenLeft: boolean = true
+      let queenRight: boolean = true
       for (let i = 1; i < 8; i++) {
         if (
           !checkTileTaken(
@@ -960,11 +960,11 @@ const possibleMovesHandler = (
       queenArray = queenArray
         .filter(
           (value) =>
-            value < 89 &&
-            value > 10 &&
-            value % 10 !== 0 &&
-            value[0] !== 0 &&
-            value % 10 !== 9
+            Number(value) < 89 &&
+            Number(value) > 10 &&
+            Number(value) % 10 !== 0 &&
+            Number(value[0]) !== 0 &&
+            Number(value) % 10 !== 9
         )
         .sort()
       return queenArray

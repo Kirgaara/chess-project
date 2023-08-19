@@ -1,4 +1,5 @@
 import React from 'react'
+import { RowParams } from '../utils/interfaces'
 import Tile from './Tile'
 
 const Row = ({
@@ -7,7 +8,7 @@ const Row = ({
   movePiece,
   possibleMoves,
   takenTiles,
-}) => {
+}: RowParams) => {
   const tileID = [8, 7, 6, 5, 4, 3, 2, 1]
   return (
     <div className="row">
