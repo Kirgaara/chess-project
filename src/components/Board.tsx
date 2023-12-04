@@ -126,7 +126,15 @@ const Board = () => {
               },
             }
           }
-        } else if (takenTiles.black.filter((value) => value === id).length) {
+          newPiecesLocation = {
+            ...newPiecesLocation,
+            [movingPiece.figure]: {
+              ...newPiecesLocation[movingPiece.figure as keyof AllPieces],
+              [movingPiece.color]: [...movingPiece.nonChosenPieces, id],
+            },
+          }
+        }
+        if (takenTiles.black.filter((value) => value === id).length) {
           for (let key in piecesLocation) {
             newPiecesLocation = {
               ...newPiecesLocation,
@@ -145,7 +153,11 @@ const Board = () => {
               [movingPiece.color]: [...movingPiece.nonChosenPieces, id],
             },
           }
-        } else {
+        }
+        if (
+          !takenTiles.black.filter((value) => value === id).length &&
+          !takenTiles.white.filter((value) => value === id).length
+        ) {
           newPiecesLocation = {
             ...piecesLocation,
             [movingPiece.figure]: {
